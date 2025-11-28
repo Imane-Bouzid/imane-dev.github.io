@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imane - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4A44C6;
+            --accent: #FF6584;
+            --text: #333333;
+            --text-light: #666666;
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        .dark-mode {
+            --primary: #8B85FF;
+            --secondary: #6C63FF;
+            --accent: #FF6584;
+            --text: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg: #121212;
+            --bg-secondary: #1e1e1e;
+            --card-bg: #1e1e1e;
+            --border: #333333;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --header-bg: rgba(30, 30, 30, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--header-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .navbar {
+            padding: 5px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg);
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.05) 70%, transparent 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-light);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        /* Education & Experience Section */
+        .education-experience {
+            background-color: var(--bg);
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .timeline-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: var(--bg-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .project-img {
+            height: 200px;
+            background-color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--bg);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Language Toggle */
+        .lang-fr, .lang-en {
+            display: none;
+        }
+
+        .lang-fr.active, .lang-en.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-container, .about-content, .timeline-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--header-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px var(--shadow);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 10px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Imane<span>.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="lang-fr active">Accueil</a><a href="#home" class="lang-en">Home</a></li>
+                    <li><a href="#about" class="lang-fr active">À propos</a><a href="#about" class="lang-en">About</a></li>
+                    <li><a href="#education" class="lang-fr active">Formation</a><a href="#education" class="lang-en">Education</a></li>
+                    <li><a href="#projects" class="lang-fr active">Projets</a><a href="#projects" class="lang-en">Projects</a></li>
+                    <li><a href="#skills" class="lang-fr active">Compétences</a><a href="#skills" class="lang-en">Skills</a></li>
+                    <li><a href="#contact" class="lang-fr active">Contact</a><a href="#contact" class="lang-en">Contact</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="lang-toggle" id="langToggle">
+                        <span class="lang-fr active">EN</span><span class="lang-en">FR</span>
+                    </button>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="lang-fr active">Bonjour, je suis <span style="color: var(--primary);">Imane</span></h1>
+                <h1 class="lang-en">Hello, I'm <span style="color: var(--primary);">Imane</span></h1>
+                <p class="lang-fr active">Développeuse Full-Stack & Spécialiste en Cybersécurité</p>
+                <p class="lang-en">Full-Stack Developer & Cybersecurity Specialist</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn lang-fr active">Voir mes projets</a>
+                    <a href="#projects" class="btn lang-en">View my projects</a>
+                    <a href="#contact" class="btn btn-outline lang-fr active">Me contacter</a>
+                    <a href="#contact" class="btn btn-outline lang-en">Contact me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title lang-fr active">À propos de moi</h2>
+            <h2 class="section-title lang-en">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lang-fr active">
+                        Je suis une développeuse passionnée par la création de solutions web innovantes et sécurisées. 
+                        Avec une formation solide en informatique et en cybersécurité, je mets mes compétences au service 
+                        de projets variés allant du développement d'applications web à la sécurisation d'infrastructures réseau.
+                    </p>
+                    <p class="lang-fr active">
+                        Mon parcours académique et mes expériences professionnelles m'ont permis de développer une expertise 
+                        technique polyvalente, alliant développement full-stack, administration réseau et tests de pénétration.
+                    </p>
+                    <p class="lang-en">
+                        I am a passionate developer dedicated to creating innovative and secure web solutions. 
+                        With a strong background in computer science and cybersecurity, I apply my skills to 
+                        diverse projects ranging from web application development to network infrastructure security.
+                    </p>
+                    <p class="lang-en">
+                        My academic journey and professional experiences have allowed me to develop versatile 
+                        technical expertise, combining full-stack development, network administration, and penetration testing.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn lang-fr active">Télécharger mon CV</a>
+                        <a href="#contact" class="btn lang-en">Download my CV</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="profile-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience Section -->
+    <section class="education-experience" id="education">
+        <div class="container">
+            <h2 class="section-title lang-fr active">Formation & Expérience</h2>
+            <h2 class="section-title lang-en">Education & Experience</h2>
+            <div class="timeline-container">
+                <div class="timeline-section">
+                    <h3 class="lang-fr active">Formation</h3>
+                    <h3 class="lang-en">Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 - Présent</div>
+                            <div class="timeline-title lang-fr active">Master en Ingénierie Informatique et Sécurité des Systèmes</div>
+                            <div class="timeline-title lang-en">Master in Computer Engineering and System Security</div>
+                            <div class="timeline-description lang-fr active">Faculté des Sciences, Université Mohammed V, Rabat</div>
+                            <div class="timeline-description lang-en">Faculty of Sciences, Mohammed V University, Rabat</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 - 2023</div>
+                            <div class="timeline-title lang-fr active">Licence en Science Mathématique et Informatique</div>
+                            <div class="timeline-title lang-en">Bachelor in Mathematical Science and Computer Science</div>
+                            <div class="timeline-description lang-fr active">Faculté des Sciences, Université Mohammed V, Rabat</div>
+                            <div class="timeline-description lang-en">Faculty of Sciences, Mohammed V University, Rabat</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018 - 2020</div>
+                            <div class="timeline-title lang-fr active">Diplôme Universitaire de Technologie en Administration Réseaux</div>
+                            <div class="timeline-title lang-en">University Diploma in Network Administration</div>
+                            <div class="timeline-description lang-fr active">École Supérieure de Technologie, Salé</div>
+                            <div class="timeline-description lang-en">Higher School of Technology, Salé</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018</div>
+                            <div class="timeline-title lang-fr active">Baccalauréat Sciences Physiques et Chimie</div>
+                            <div class="timeline-title lang-en">Baccalaureate in Physical Sciences and Chemistry</div>
+                            <div class="timeline-description lang-fr active">Lycée Moulay Youssef, Rabat</div>
+                            <div class="timeline-description lang-en">Moulay Youssef High School, Rabat</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-section">
+                    <h3 class="lang-fr active">Expérience Professionnelle</h3>
+                    <h3 class="lang-en">Professional Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Présent</div>
+                            <div class="timeline-title lang-fr active">Stage de Développement Web Full-Stack</div>
+                            <div class="timeline-title lang-en">Full-Stack Web Development Internship</div>
+                            <div class="timeline-description lang-fr active">Office National des Œuvres Universitaires Sociales et Culturelles (ONOUSC), Rabat</div>
+                            <div class="timeline-description lang-en">National Office of University Social and Cultural Works (ONOUSC), Rabat</div>
+                            <div class="timeline-description lang-fr active">Développement d'une plateforme web dynamique pour consultation des bourses</div>
+                            <div class="timeline-description lang-en">Development of a dynamic web platform for scholarship consultation</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-title lang-fr active">Stage d'Administration Réseau</div>
+                            <div class="timeline-title lang-en">Network Administration Internship</div>
+                            <div class="timeline-description lang-fr active">Ministère de l'Enseignement Supérieur - Direction des Systèmes d'Information, Rabat</div>
+                            <div class="timeline-description lang-en">Ministry of Higher Education - Information Systems Department, Rabat</div>
+                            <div class="timeline-description lang-fr active">Configuration et déploiement d'équipements réseau, support technique et gestion des incidents</div>
+                            <div class="timeline-description lang-en">Configuration and deployment of network equipment, technical support and incident management</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title lang-fr active">Projets Académiques</h2>
+            <h2 class="section-title lang-en">Academic Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #6C63FF, #4A44C6); color: white;">
+                        <i class="fas fa-database fa-3x"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title lang-fr active">Data Warehouse avec Pentaho</h3>
+                        <h3 class="project-title lang-en">Data Warehouse with Pentaho</h3>
+                        <p class="project-description lang-fr active">
+                            Conception et implémentation d'un entrepôt de données pour une entreprise de vente avec Pentaho.
+                        </p>
+                        <p class="project-description lang-en">
+                            Design and implementation of a data warehouse for a sales company with Pentaho.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Pentaho</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">Business Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #FF6584, #E04A6D); color: white;">
+                        <i class="fas fa-network-wired fa-3x"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title lang-fr active">Infrastructure Réseau Sécurisée</h3>
+                        <h3 class="project-title lang-en">Secure Network Infrastructure</h3>
+                        <p class="project-description lang-fr active">
+                            Conception et déploiement d'une architecture réseau complète avec politiques de sécurité.
+                        </p>
+                        <p class="project-description lang-en">
+                            Design and deployment of a complete network architecture with security policies.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Réseaux</span>
+                            <span class="tag">Sécurité</span>
+                            <span class="tag">VLAN</span>
+                            <span class="tag">Supervision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #36D1DC, #5B86E5); color: white;">
+                        <i class="fas fa-laptop-code fa-3x"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title lang-fr active">Plateforme Web de Bourses</h3>
+                        <h3 class="project-title lang-en">Scholarship Web Platform</h3>
+                        <p class="project-description lang-fr active">
+                            Développement d'une plateforme web dynamique pour consultation des bourses étudiantes.
+                        </p>
+                        <p class="project-description lang-en">
+                            Development of a dynamic web platform for student scholarship consultation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">Laravel</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title lang-fr active">Compétences Techniques</h2>
+            <h2 class="section-title lang-en">Technical Skills</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i> <span class="lang-fr active">Cybersécurité & Tests d'intrusion</span><span class="lang-en">Cybersecurity & Penetration Testing</span></h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Applications mobiles (MobSF, Apktool)</span><span class="lang-en">Mobile applications (MobSF, Apktool)</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Applications web (SQLi, XSS, CSRF)</span><span class="lang-en">Web applications (SQLi, XSS, CSRF)</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Outils: Burp Suite, Metasploit, Wireshark</span><span class="lang-en">Tools: Burp Suite, Metasploit, Wireshark</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Développement sécurisé Android (Java)</span><span class="lang-en">Secure Android development (Java)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i> <span class="lang-fr active">Réseaux & Infrastructures</span><span class="lang-en">Networks & Infrastructure</span></h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Architecture: VLAN, DMZ, segmentation</span><span class="lang-en">Architecture: VLAN, DMZ, segmentation</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Services: DNS, DHCP, Active Directory</span><span class="lang-en">Services: DNS, DHCP, Active Directory</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Sécurisation: Pare-feu, politiques</span><span class="lang-en">Security: Firewall, policies</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Supervision: Nagios XI, Zabbix</span><span class="lang-en">Monitoring: Nagios XI, Zabbix</span></li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> <span class="lang-fr active">Développement & Programmation</span><span class="lang-en">Development & Programming</span></h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> PHP, Laravel, HTML5, CSS3, JavaScript</li>
+                        <li><i class="fas fa-check"></i> Java, Python, C, C++</li>
+                        <li><i class="fas fa-check"></i> MySQL, PostgreSQL, MongoDB</li>
+                        <li><i class="fas fa-check"></i> Git, Docker, APIs REST</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> <span class="lang-fr active">Langues</span><span class="lang-en">Languages</span></h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Arabe: Langue maternelle</span><span class="lang-en">Arabic: Native</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Français: Courant</span><span class="lang-en">French: Fluent</span></li>
+                        <li><i class="fas fa-check"></i> <span class="lang-fr active">Anglais: Intermédiaire</span><span class="lang-en">English: Intermediate</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title lang-fr active">Contactez-moi</h2>
+            <h2 class="section-title lang-en">Contact Me</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 class="lang-fr active">Informations de contact</h3>
+                    <h3 class="lang-en">Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>imane@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+212 6 00 00 00 00</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="lang-fr active">Rabat, Maroc</span>
+                            <span class="lang-en">Rabat, Morocco</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="lang-fr active">Réseaux sociaux</h3>
+                    <h3 class="lang-en">Social Networks</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 class="lang-fr active">Envoyez un message</h3>
+                    <h3 class="lang-en">Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="lang-fr active">Votre nom</label>
+                            <label for="name" class="lang-en">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="lang-fr active">Votre email</label>
+                            <label for="email" class="lang-en">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="lang-fr active">Votre message</label>
+                            <label for="message" class="lang-en">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn lang-fr active">Envoyer</button>
+                        <button type="submit" class="btn lang-en">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Imane<span>.</span></div>
+                    <p class="lang-fr active">Développeuse Full-Stack & Spécialiste en Cybersécurité</p>
+                    <p class="lang-en">Full-Stack Developer & Cybersecurity Specialist</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="lang-fr active">Liens rapides</h4>
+                    <h4 class="lang-en">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="lang-fr active">Accueil</a><a href="#home" class="lang-en">Home</a></li>
+                        <li><a href="#about" class="lang-fr active">À propos</a><a href="#about" class="lang-en">About</a></li>
+                        <li><a href="#projects" class="lang-fr active">Projets</a><a href="#projects" class="lang-en">Projects</a></li>
+                        <li><a href="#contact" class="lang-fr active">Contact</a><a href="#contact" class="lang-en">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="lang-fr active">Contact</h4>
+                    <h4 class="lang-en">Contact</h4>
+                    <p><i class="fas fa-envelope"></i> imane@example.com</p>
+                    <p><i class="fas fa-phone"></i> +212 6 00 00 00 00</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="lang-fr active">Rabat, Maroc</span><span class="lang-en">Rabat, Morocco</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Imane. <span class="lang-fr active">Tous droits réservés.</span><span class="lang-en">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        const langFrElements = document.querySelectorAll('.lang-fr');
+        const langEnElements = document.querySelectorAll('.lang-en');
+        
+        langToggle.addEventListener('click', function() {
+            langFrElements.forEach(el => el.classList.toggle('active'));
+            langEnElements.forEach(el => el.classList.toggle('active'));
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const isFrench = document.querySelector('.lang-fr.active');
+            if (isFrench) {
+                alert('Merci pour votre message! Je vous répondrai bientôt.');
+            } else {
+                alert('Thank you for your message! I will get back to you soon.');
+            }
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

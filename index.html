@@ -1021,68 +1021,69 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title lang-fr active">Contactez-moi</h2>
-            <h2 class="section-title lang-en">Contact Me</h2>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 class="lang-fr active">Informations de contact</h3>
-                    <h3 class="lang-en">Contact Information</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>imane@example.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+212 6 00 00 00 00</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span class="lang-fr active">Rabat, Maroc</span>
-                            <span class="lang-en">Rabat, Morocco</span>
-                        </div>
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title lang-fr active">Contactez-moi</h2>
+        <h2 class="section-title lang-en">Contact Me</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="lang-fr active">Informations de contact</h3>
+                <h3 class="lang-en">Contact Information</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>imane@example.com</span>
                     </div>
-                    
-                    <h3 class="lang-fr active">Réseaux sociaux</h3>
-                    <h3 class="lang-en">Social Networks</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+212 6 00 00 00 00</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="lang-fr active">Rabat, Maroc</span>
+                        <span class="lang-en">Rabat, Morocco</span>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3 class="lang-fr active">Envoyez un message</h3>
-                    <h3 class="lang-en">Send a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name" class="lang-fr active">Votre nom</label>
-                            <label for="name" class="lang-en">Your Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="lang-fr active">Votre email</label>
-                            <label for="email" class="lang-en">Your Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="lang-fr active">Votre message</label>
-                            <label for="message" class="lang-en">Your Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn lang-fr active">Envoyer</button>
-                        <button type="submit" class="btn lang-en">Send</button>
-                    </form>
+                <h3 class="lang-fr active">Réseaux sociaux</h3>
+                <h3 class="lang-en">Social Networks</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
+            
+            <div class="contact-form">
+                <h3 class="lang-fr active">Envoyez un message</h3>
+                <h3 class="lang-en">Send a Message</h3>
+                <!-- Updated Form with Formspree -->
+                <form action="https://formspree.io/f/mrbwwogq" method="POST">
+                    <div class="form-group">
+                        <label for="name" class="lang-fr active">Votre nom</label>
+                        <label for="name" class="lang-en">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="lang-fr active">Votre email</label>
+                        <label for="email" class="lang-en">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="lang-fr active">Votre message</label>
+                        <label for="message" class="lang-en">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn lang-fr active">Envoyer</button>
+                    <button type="submit" class="btn lang-en">Send</button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
